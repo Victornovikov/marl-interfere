@@ -1,0 +1,39 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Train mpe debug with simple_push",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/train_mpe.py",
+
+            "args": [
+                "--env_name", "MPE",
+                "--algorithm_name", "rmappo",
+                "--experiment_name", "check",
+                "--scenario_name", "simple_push",
+                "--num_agents", "2",
+                "--num_landmarks", "1",
+                "--seed", "1",
+                "--n_training_threads", "1",
+                "--n_rollout_threads", "128",
+                "--num_mini_batch", "1",
+                "--episode_length", "25",
+                "--num_env_steps", "20000000",
+                "--ppo_epoch", "10",
+                "--use_ReLU", 
+                "--gain", "0.01",
+                "--lr", "7e-4",
+                "--critic_lr", "7e-4",
+                "--wandb_name", "debug",
+                "--user_name", "victornovikov"
+            ],
+
+            "console": "integratedTerminal",
+            "justMyCode": true
+        }
+    ]
+}

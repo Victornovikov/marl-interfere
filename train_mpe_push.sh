@@ -1,8 +1,8 @@
 #!/bin/sh
 env="MPE"
-scenario="simple_push" 
-num_landmarks=3
-num_agents=3
+scenario="simple_push"  #https://pettingzoo.farama.org/environments/mpe/simple_push/
+num_landmarks=1
+num_agents=2
 algo="rmappo" #"mappo" "ippo"
 exp="check"
 seed_max=1
