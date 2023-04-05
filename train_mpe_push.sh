@@ -6,6 +6,7 @@ num_agents=2
 algo="rmappo" #"mappo" "ippo"
 exp="check"
 seed_max=1
+share_policy=True
 
 echo "env is ${env}, scenario is ${scenario}, algo is ${algo}, exp is ${exp}, max seed is ${seed_max}"
 for seed in `seq ${seed_max}`;
