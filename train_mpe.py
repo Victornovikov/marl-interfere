@@ -6,6 +6,8 @@ import socket
 import setproctitle
 import numpy as np
 from pathlib import Path
+from datetime import datetime
+
 import torch
 from config import get_config
 from envs.mpe.MPE_env import MPEEnv
@@ -76,7 +78,6 @@ def main(args):
     elif all_args.algorithm_name == "ippo":
         print("u are choosing to use ippo, we set use_centralized_V to be False")
         all_args.use_centralized_V = False
-    else:
         raise NotImplementedError
 
     assert (all_args.share_policy == True and all_args.scenario_name == 'simple_speaker_listener') == False, (
@@ -96,8 +97,8 @@ def main(args):
         torch.set_num_threads(all_args.n_training_threads)
 
     # run dir
-    run_dir = Path(os.path.split(os.path.dirname(os.path.abspath(__file__)))[
-                   0] + "/results") / all_args.env_name / all_args.scenario_name / all_args.algorithm_name / all_args.experiment_name
+    run_dir = Path(os.path.dirname(os.path.abspath(__file__))
+                     + "/results") / all_args.env_name / all_args.scenario_name / all_args.algorithm_name / all_args.experiment_name
     if not run_dir.exists():
         os.makedirs(str(run_dir))
 

@@ -13,3 +13,14 @@ The issue arises when copying observations to shared buffer.( possibly it should
 Shared (for push it shouldn't be shared?)
 1. trainer calls runner and passes the config.
 2. base runner initiates replay buffer by calling SharedReplayBuffer from utils
+
+# issues
+1. wrong size of the tensor when initializing replay buffer in the warm up. 
+Got fixed by explicitly stating share_policy flag. 
+
+
+# Todos
+1. Learn how to render
+2. Learn how to store model
+3. Learn how to control using trained model 
+
