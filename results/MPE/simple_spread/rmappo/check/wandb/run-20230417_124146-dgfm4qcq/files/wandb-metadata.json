@@ -1,0 +1,205 @@
+{
+    "os": "Linux-5.15.90.1-microsoft-standard-WSL2-x86_64-with-glibc2.35",
+    "python": "3.10.10",
+    "heartbeatAt": "2023-04-17T16:41:46.541869",
+    "startedAt": "2023-04-17T16:41:46.172473",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "--env_name",
+        "MPE",
+        "--algorithm_name",
+        "rmappo",
+        "--experiment_name",
+        "check",
+        "--scenario_name",
+        "simple_spread",
+        "--share_policy",
+        "True",
+        "--num_agents",
+        "3",
+        "--num_landmarks",
+        "3",
+        "--seed",
+        "1",
+        "--n_training_threads",
+        "1",
+        "--n_rollout_threads",
+        "128",
+        "--num_mini_batch",
+        "1",
+        "--episode_length",
+        "25",
+        "--num_env_steps",
+        "20000000",
+        "--ppo_epoch",
+        "10",
+        "--use_ReLU",
+        "--gain",
+        "0.01",
+        "--lr",
+        "7e-4",
+        "--critic_lr",
+        "7e-4",
+        "--wandb_name",
+        "debug",
+        "--user_name",
+        "victornovikov"
+    ],
+    "state": "running",
+    "program": "/home/vn/marl-interfere/train_mpe.py",
+    "codePath": "train_mpe.py",
+    "git": {
+        "remote": "git@github.com:Victornovikov/marl-interfere.git",
+        "commit": "e5a2d6df8abc522c961272fa5b4d44bb91676ebe"
+    },
+    "email": "novikov.victor.s@gmail.com",
+    "root": "/home/vn/marl-interfere",
+    "host": "desktop",
+    "username": "vn",
+    "executable": "/home/vn/miniconda3/envs/torch/bin/python",
+    "cpu_count": 12,
+    "cpu_count_logical": 24,
+    "cpu_freq": {
+        "current": 4691.1140000000005,
+        "min": 0.0,
+        "max": 0.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 4691.114,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 4691.114,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 4691.114,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 4691.114,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 4691.114,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 4691.114,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 4691.114,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 4691.114,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 4691.114,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 4691.114,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 4691.114,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 4691.114,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 4691.114,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 4691.114,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 4691.114,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 4691.114,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 4691.114,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 4691.114,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 4691.114,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 4691.114,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 4691.114,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 4691.114,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 4691.114,
+            "min": 0.0,
+            "max": 0.0
+        },
+        {
+            "current": 4691.114,
+            "min": 0.0,
+            "max": 0.0
+        }
+    ],
+    "disk": {
+        "total": 1006.853931427002,
+        "used": 10.941341400146484
+    },
+    "gpu": "NVIDIA GeForce RTX 3090",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce RTX 3090",
+            "memory_total": 25769803776
+        }
+    ],
+    "memory": {
+        "total": 31.212387084960938
+    }
+}
