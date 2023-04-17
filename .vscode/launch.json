@@ -66,6 +66,35 @@
 
             "console": "integratedTerminal",
             "justMyCode": true
+        },
+        {
+            "name": "Render mpe debug with simple_spread",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/render_mpe.py",
+
+            "args": [
+                "--env_name", "MPE",
+                "--scenario_name", "simple_spread",
+                "--num_landmarks", "3",
+                "--num_agents", "3",
+                "--algorithm_name", "rmappo",
+                "--experiment_name", "render",
+                "--safe_gifs",
+                "--share_policy", "True",
+                "--seed", "1",
+                "--n_training_threads", "1",
+                "--n_rollout_threads", "1",
+                "--user_render",
+                "--episode_length", "25",
+                "--render_episodes", "5", 
+                "--model_dir", "models/MPE/simple_spread/rmappo/check/2021-03-01_17-00-00",
+                "--wandb_name", "debug",
+                "--user_name", "victornovikov"
+            ],
+
+            "console": "integratedTerminal",
+            "justMyCode": true
         }
     ]
 }
