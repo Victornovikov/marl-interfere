@@ -81,9 +81,6 @@ class Runner(object):
                         device = self.device)
             self.policy.append(po)
 
-        if self.model_dir is not None:
-            self.restore()
-
         self.trainer = []
         self.buffer = []
         for agent_id in range(self.num_agents):
@@ -98,6 +95,9 @@ class Runner(object):
             self.buffer.append(bu)
             self.trainer.append(tr)
             
+        if self.model_dir is not None:
+            self.restore()
+
     def run(self):
         raise NotImplementedError
 
@@ -140,14 +140,29 @@ class Runner(object):
                 policy_vnrom = self.trainer[agent_id].value_normalizer
                 torch.save(policy_vnrom.state_dict(), str(self.save_dir) + "/vnrom_agent" + str(agent_id) + ".pt")
 
+    # def restore(self):
+    #     for agent_id in range(self.num_agents):
+    #         policy_actor_state_dict = torch.load(str(self.model_dir) + '/actor_agent' + str(agent_id) + '.pt')
+    #         self.policy[agent_id].actor.load_state_dict(policy_actor_state_dict)
+    #         policy_critic_state_dict = torch.load(str(self.model_dir) + '/critic_agent' + str(agent_id) + '.pt')
+    #         self.policy[agent_id].critic.load_state_dict(policy_critic_state_dict)
+    #         if self.trainer[agent_id]._use_valuenorm:
+    #             policy_vnrom_state_dict = torch.load(str(self.model_dir) + '/vnrom_agent' + str(agent_id) + '.pt')
+    #             self.trainer[agent_id].value_normalizer.load_state_dict(policy_vnrom_state_dict)
+
+    #there is a bug in the previous version - the value normalizer is not set
+    #so we need to check if the file exists and if it does, load it
     def restore(self):
         for agent_id in range(self.num_agents):
             policy_actor_state_dict = torch.load(str(self.model_dir) + '/actor_agent' + str(agent_id) + '.pt')
             self.policy[agent_id].actor.load_state_dict(policy_actor_state_dict)
             policy_critic_state_dict = torch.load(str(self.model_dir) + '/critic_agent' + str(agent_id) + '.pt')
             self.policy[agent_id].critic.load_state_dict(policy_critic_state_dict)
-            if self.trainer[agent_id]._use_valuenorm:
-                policy_vnrom_state_dict = torch.load(str(self.model_dir) + '/vnrom_agent' + str(agent_id) + '.pt')
+            
+            vnrom_file_path = str(self.model_dir) + '/vnrom_agent' + str(agent_id) + '.pt'
+            if os.path.isfile(vnrom_file_path):
+                policy_vnrom_state_dict = torch.load(vnrom_file_path)
+                # self.trainer.append({'value_normalizer': None})
                 self.trainer[agent_id].value_normalizer.load_state_dict(policy_vnrom_state_dict)
 
     def log_train(self, train_infos, total_num_steps): 

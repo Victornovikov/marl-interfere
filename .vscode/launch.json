@@ -15,7 +15,7 @@
                 "--algorithm_name", "rmappo",
                 "--experiment_name", "check",
                 "--scenario_name", "simple_push",
-                "--share_policy", "True",
+                "--share_policy", //means do not share policy
                 "--num_agents", "2",
                 "--num_landmarks", "1",
                 "--seed", "1",
@@ -47,7 +47,7 @@
                 "--algorithm_name", "rmappo",
                 "--experiment_name", "check",
                 "--scenario_name", "simple_spread",
-                "--share_policy", "True",
+                "--share_policy", // means do not share policy
                 "--num_agents", "3",
                 "--num_landmarks", "3",
                 "--seed", "1",
@@ -81,15 +81,15 @@
                 "--num_agents", "3",
                 "--algorithm_name", "rmappo",
                 "--experiment_name", "check",
-                "--safe_gifs", "True",
-                "--share_policy", "True",
+                "--share_policy",   // if not set, policy is shared
+                "--save_gifs", //this is true
                 "--seed", "1",
                 "--n_training_threads", "1",
                 "--n_rollout_threads", "1",
                 "--use_render", "True",
                 "--episode_length", "25",
                 "--render_episodes", "5", 
-                "--model_dir", "results/MPE/simple_spread/rmappo/check/latest-run/files",
+                "--model_dir", "results/MPE/simple_spread/rmappo/check/wandb/run-20230417_124146-dgfm4qcq/files",
                 "--wandb_name", "debug",
                 "--user_name", "victornovikov"
             ],
