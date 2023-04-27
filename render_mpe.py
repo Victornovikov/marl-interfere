@@ -129,7 +129,6 @@ def main(args):
     runner = Runner(config)
     runner.render()
     
-    # post process
     envs.close()
 
 if __name__ == "__main__":
