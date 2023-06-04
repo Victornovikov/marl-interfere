@@ -152,6 +152,8 @@ def get_config():
     Pretrained parameters:
         --model_dir <str>
             by default None. set the path to pretrained model.
+        --swap 
+            by default None. Swaps two agents and their parameters.
     """
     parser = argparse.ArgumentParser(
         description='onpolicy', formatter_class=argparse.RawDescriptionHelpFormatter)
@@ -571,4 +573,7 @@ def get_config():
     # pretrained parameters
     parser.add_argument("--model_dir", type=str, default=None, help="by default None. set the path to pretrained model.")
 
+    # swap agents roles?
+    parser.add_argument("--swap", action='store_true', default=False, help="swaps agents and their parameters")
+    
     return parser

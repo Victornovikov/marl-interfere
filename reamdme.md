@@ -23,4 +23,19 @@ Got fixed by explicitly stating share_policy flag.
 1. Learn how to render
 2. Learn how to store model
 3. Learn how to control using trained model 
+---
+4. learn how to swap models
+
+
+
+
+----
+Plan  
+1. Train model
+2. Record actions, performance, training speed
+3. Switch model roles, train 
+4. Record actions, performance, training speed
+
+Commands:
+> bash train_mpe_push.sh
 

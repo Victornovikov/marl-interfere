@@ -45,6 +45,9 @@ class Runner(object):
 
         # dir
         self.model_dir = self.all_args.model_dir
+        
+        # swap the models?
+        self.swap = self.all_args.swap
 
         if self.use_render:
             import imageio
@@ -52,6 +55,9 @@ class Runner(object):
             self.gif_dir = str(self.run_dir / 'gifs')
             if not os.path.exists(self.gif_dir):
                 os.makedirs(self.gif_dir)
+        elif self.swap:
+            self.run_dir = config["run_dir"]
+
         else:
             if self.use_wandb:
                 self.save_dir = str(wandb.run.dir)
@@ -153,17 +159,31 @@ class Runner(object):
     #there is a bug in the previous version - the value normalizer is not set
     #so we need to check if the file exists and if it does, load it
     def restore(self):
-        for agent_id in range(self.num_agents):
-            policy_actor_state_dict = torch.load(str(self.model_dir) + '/actor_agent' + str(agent_id) + '.pt')
+        # TODO: check if this is correct
+        # if self.swap: then we need to load the models in reverse order, which for
+        # games where the one agent prevents the other from achieving a goal, will
+        # allow us to test if switching roles affects learning rates 
+        if self.swap:
+            index =-1
+            start = self.num_agents-1
+            end = -1
+        else:
+            index = 1
+            start = 0
+            end = self.num_agents
+        for agent_id in range(start, end, index):
+            print("index", index)
+            policy_actor_state_dict = torch.load(str(self.model_dir) + '/actor_agent' + str(index) + '.pt')
             self.policy[agent_id].actor.load_state_dict(policy_actor_state_dict)
-            policy_critic_state_dict = torch.load(str(self.model_dir) + '/critic_agent' + str(agent_id) + '.pt')
+            policy_critic_state_dict = torch.load(str(self.model_dir) + '/critic_agent' + str(index) + '.pt')
             self.policy[agent_id].critic.load_state_dict(policy_critic_state_dict)
             
-            vnrom_file_path = str(self.model_dir) + '/vnrom_agent' + str(agent_id) + '.pt'
+            vnrom_file_path = str(self.model_dir) + '/vnrom_agent' + str(index) + '.pt'
             if os.path.isfile(vnrom_file_path):
                 policy_vnrom_state_dict = torch.load(vnrom_file_path)
                 # self.trainer.append({'value_normalizer': None})
                 self.trainer[agent_id].value_normalizer.load_state_dict(policy_vnrom_state_dict)
+        
 
     def log_train(self, train_infos, total_num_steps): 
         for agent_id in range(self.num_agents):
