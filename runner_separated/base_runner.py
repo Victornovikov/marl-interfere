@@ -57,7 +57,7 @@ class Runner(object):
                 os.makedirs(self.gif_dir)
         elif self.swap:
             self.run_dir = config["run_dir"]
-
+            self.save_dir = str(wandb.run.dir) # assuming we use wandb, otherwise need to add logic as below
         else:
             if self.use_wandb:
                 self.save_dir = str(wandb.run.dir)
@@ -171,18 +171,22 @@ class Runner(object):
             index = 1
             start = 0
             end = self.num_agents
+        storage_index = 0 # this is the index of the model after loading, not the index of the model in the file name
         for agent_id in range(start, end, index):
-            print("index", index)
-            policy_actor_state_dict = torch.load(str(self.model_dir) + '/actor_agent' + str(index) + '.pt')
-            self.policy[agent_id].actor.load_state_dict(policy_actor_state_dict)
-            policy_critic_state_dict = torch.load(str(self.model_dir) + '/critic_agent' + str(index) + '.pt')
-            self.policy[agent_id].critic.load_state_dict(policy_critic_state_dict)
+            print("loading index", agent_id, "into storage index", storage_index)
+            print("trying to load", str(self.model_dir) + '/actor_agent' + str(agent_id) + '.pt')
+            policy_actor_state_dict = torch.load(str(self.model_dir) + '/actor_agent' + str(agent_id) + '.pt')
+            self.policy[storage_index].actor.load_state_dict(policy_actor_state_dict)
+            print("trying to load", str(self.model_dir) + '/critic_agent' + str(agent_id) + '.pt')
+            policy_critic_state_dict = torch.load(str(self.model_dir) + '/critic_agent' + str(agent_id) + '.pt')
+            self.policy[storage_index].critic.load_state_dict(policy_critic_state_dict)
             
-            vnrom_file_path = str(self.model_dir) + '/vnrom_agent' + str(index) + '.pt'
+            vnrom_file_path = str(self.model_dir) + '/vnrom_agent' + str(agent_id) + '.pt'
             if os.path.isfile(vnrom_file_path):
                 policy_vnrom_state_dict = torch.load(vnrom_file_path)
                 # self.trainer.append({'value_normalizer': None})
-                self.trainer[agent_id].value_normalizer.load_state_dict(policy_vnrom_state_dict)
+                self.trainer[storage_index].value_normalizer.load_state_dict(policy_vnrom_state_dict)
+            storage_index += 1
         
 
     def log_train(self, train_infos, total_num_steps): 

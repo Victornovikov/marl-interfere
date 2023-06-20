@@ -139,6 +139,10 @@ class Scenario(BaseScenario):
             if other is agent: continue
             comm.append(other.state.c)
             other_pos.append(other.state.p_pos - agent.state.p_pos)
-            if not other.adversary:
+            # per documentation: https://pettingzoo.farama.org/environments/mpe/simple_tag/
+            # Agent and adversary observations: [self_vel, self_pos, landmark_rel_positions, other_agent_rel_positions, other_agent_velocities],
+            # but this code removes velocities for adversaries, which is probably a bug?
+            # if not other.adversary:
+            if True:
                 other_vel.append(other.state.p_vel)
         return np.concatenate([agent.state.p_vel] + [agent.state.p_pos] + entity_pos + other_pos + other_vel)

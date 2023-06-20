@@ -393,7 +393,7 @@ def get_config():
             by default, use generalized advantage estimation. If set, do not use gae.
         --gamma <float>
             discount factor for rewards (default: 0.99)
-        --gae_lambda <float>
+        --gae_lambda <floa>
             gae lambda parameter (default: 0.95)
         --use_proper_time_limits
             by default, the return value does consider limits of time. If set, compute returns with considering time limits factor.

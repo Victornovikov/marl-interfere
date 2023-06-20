@@ -1,8 +1,10 @@
 #!/bin/sh
 env="MPE"
-scenario="simple_push"  #https://pettingzoo.farama.org/environments/mpe/simple_push/
-num_landmarks=1
-num_agents=2
+scenario="simple_tag"  #https://pettingzoo.farama.org/environments/mpe/simple_push/
+num_landmarks=4
+num_agents=5
+num_good_agents=4
+num_adversaries=1
 algo="rmappo" #"mappo" "ippo"
 exp="train"
 seed_max=1

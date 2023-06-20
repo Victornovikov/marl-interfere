@@ -58,6 +58,11 @@ def parse_args(args, parser):
     parser.add_argument('--num_agents', type=int,
                         default=2, help="number of players")
 
+    parser.add_argument('--num_good_agents', type=int,
+                        default=4, help="number of players")
+    parser.add_argument('--num_adversaries', type=int,
+                        default=1, help="number of players")
+
     all_args = parser.parse_known_args(args)[0]
 
     return all_args
@@ -104,13 +109,17 @@ def main(args):
 
     # wandb
     if all_args.use_wandb:
+        if all_args.swap:
+            is_swap = '_swap'
+        else:
+            is_swap = '_no_swap'
         run = wandb.init(config=all_args,
                          project=all_args.env_name,
                          entity=all_args.user_name,
                          notes=socket.gethostname(),
                          name=str(all_args.algorithm_name) + "_" +
                          str(all_args.experiment_name) +
-                         "_seed" + str(all_args.seed),
+                         "_seed" + str(all_args.seed) + is_swap,
                          group=all_args.scenario_name,
                          dir=str(run_dir),
                          job_type="training",
