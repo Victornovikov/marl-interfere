@@ -7,7 +7,7 @@ num_good_agents=4
 num_adversaries=1
 algo="rmappo" #"mappo" "ippo"
 exp="train"
-seed_max=1
+seed_max=5
 # share_policy=True
 share_policy=False
 

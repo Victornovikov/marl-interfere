@@ -5,7 +5,7 @@ num_landmarks=1
 num_agents=2
 algo="rmappo" #"mappo" "ippo"
 exp="train"
-seed_max=1
+seed_max=8
 # share_policy=True
 share_policy=False
 
