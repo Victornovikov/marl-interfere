@@ -39,3 +39,8 @@ Plan
 Commands:
 > bash train_mpe_push.sh
 
+
+------
+# Packages installation
+
+

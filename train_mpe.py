@@ -124,6 +124,9 @@ def main(args):
                          dir=str(run_dir),
                          job_type="training",
                          reinit=True)
+        # log work dir, for easy retrieval in swap script
+        with open('paths.txt', 'a') as log_file:
+            log_file.write('\n' + str(run.dir))
     else:
         if not run_dir.exists():
             curr_run = 'run1'

@@ -48,6 +48,7 @@ def get_config():
             by default True, all agents will share the same network; set to make training agents use different policies. 
         --use_centralized_V
             by default True, use centralized training mode; or else will decentralized training mode.
+            more details can be found here https://github.com/marlbenchmark/on-policy/issues/30
         --stacked_frames <int>
             Number of input frames which should be stack together.
         --hidden_size <int>
